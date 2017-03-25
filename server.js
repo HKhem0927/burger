@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-
+var app = module.exports = express();
 var app = express();
 
 app.use(express.static(process.cwd() || __dirname + '/public'));

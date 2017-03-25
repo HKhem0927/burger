@@ -1,0 +1,74 @@
+<div class ="row">
+    <div class="col-xs-12 col-md-6">
+        <div class="panel panel-info" id = "menu">
+            <div class="panel-heading">
+                <h3>Burger Choices</h3>
+            </div>
+
+            <div class="panel-body">
+                <ul>
+                {{#each burgers}}
+                {{#unless this.devoured}}
+                    <li>
+                        <h4>
+                            {{this.id}}.
+                            {{this.burger_name}}
+                        </h4>
+
+                        <form action="burgers/update/{{this.id}}?_method=PUT" method="POST">
+                            <button class = "btn btn-success btn-lg" type="submit" id="devour">Devour!</button>
+                        </form>
+
+                    </li>
+                {{/unless}}
+                {{/each}}
+                </ul>
+            </div>  
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-6">
+        <div class="panel panel-info" id="eaten">
+            <div class="panel-heading">
+                <h3>Burgers Devoured</h3>
+            </div>
+           
+            <div class="panel-body">
+                <ul>
+                    {{#each burgers}}
+                    {{#if this.devoured}}
+                        <li>
+                            <h4> 
+                                {{this.id}}.
+                                {{this.burger_name}}
+                            </h4>
+                        </li>
+                    {{/if}}
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <div class="panel panel-warning" id="add">
+            <div class="panel-heading">
+                <h3>Create Your Own Burger!</h3>
+            </div>
+
+            <div class="panel-body">
+                <form class="create-update-form" action="burgers/insert" method="POST">
+                    <div class="form-group">
+                        <h4><label for="ba">Burger Name:</label></h4>
+                        <input type="text" id="burgName" name="burger_name">
+                    </div>
+                    
+                    <button class = "btn btn-danger btn-lg" type="submit">Add Burger!</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

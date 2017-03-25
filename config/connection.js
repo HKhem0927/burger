@@ -1,13 +1,20 @@
 // Set up MySQL connection.
 var mysql = require("mysql");
+var app = require('../server')
 
+if (app.settings.env == 'development') {
 var connection = mysql.createConnection({
-  port: 3306,
-  host: "localhost",
-  user: "root",
-  password: "dada3232",
-  database: "burgers_db"
+ port: 3306,
+ host: "localhost",
+ user: "root",
+ password: "dada3232",
+ database: "burgers_db",
+ // socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
 });
+
+} else {
+ var connection = mysql.createConnection(process.env.JAWSDB_URL);
+}
 
 // Make connection.
 connection.connect(function(err) {
